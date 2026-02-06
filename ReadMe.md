@@ -39,4 +39,3 @@ The application supports different customer types with different discount and de
 
 ---
 
-## 📂 Project Structure
