@@ -39,3 +39,35 @@ The application supports different customer types with different discount and de
 
 ---
 
+
+---
+
+## 🎯 OOP Concepts Used
+
+- **Abstraction** – Customer type behaviors
+- **Inheritance** – Guest, Member, Premium customers
+- **Polymorphism** – Discount & delivery rules
+- **Encapsulation** – Data hiding using private fields
+- **Enums** – Order status tracking
+
+---
+
+## 🚀 Future Enhancements
+- File or database storage
+- GUI using JavaFX or Swing
+- Online payment simulation
+- Admin dashboard
+
+---
+
+## 👨‍💻 Author
+**Manoj Kumar**  
+B.Tech – Computer Science  
+GitHub: https://github.com/Manoj14624
+
+---
+
+## 📜 License
+This project is for educational purposes.
+
+
