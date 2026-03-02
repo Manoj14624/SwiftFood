@@ -2,11 +2,11 @@ package com.infy;
 
 public class FoodItem {
 
-    public String foodName;
-    public String foodType;   // Veg / Non-Veg
-    public String cuisine;
+    private String foodName;
+    private String foodType;
+    private String cuisine;
     private int quantity;
-    public double costPerUnit;
+    private double costPerUnit;
 
     public FoodItem(String foodName, String foodType, String cuisine,
                     int quantity, double costPerUnit) {
@@ -23,5 +23,21 @@ public class FoodItem {
 
     public String getFoodName() {
         return foodName;
+    }
+
+    public String getFoodType() {
+        return foodType;
+    }
+
+    public String getCuisine() {
+        return cuisine;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public double getCostPerUnit() {
+        return costPerUnit;
     }
 }
