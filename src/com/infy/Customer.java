@@ -27,7 +27,6 @@ public abstract class Customer {
         return name;
     }
 
-    // NEW FEATURES
     public void addOrder(Order order) {
         orderHistory.add(order);
     }
