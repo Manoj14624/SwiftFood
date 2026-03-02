@@ -28,8 +28,9 @@ public class Order {
         System.out.println("Items:");
         for (FoodItem item : items) {
             System.out.println(
-                item.foodName + " x " + item.quantity +
-                " = ₹" + item.getTotalCost()
+                    item.getFoodName() + " x " +
+                            item.getQuantity() +
+                            " = ₹" + item.getTotalCost()
             );
         }
 
