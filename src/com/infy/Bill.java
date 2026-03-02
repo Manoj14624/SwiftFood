@@ -11,7 +11,7 @@ public class Bill {
     private double totalAmount;
     private double discount;
     private double finalAmount;
-    private double deliveryFee = 40;
+    private double deliveryFee;
 
     private static List<Bill> paymentHistory = new ArrayList<>();
 
@@ -23,25 +23,26 @@ public class Bill {
     }
 
     private void calculateBill() {
+
         for (FoodItem item : orderList) {
-            totalAmount += item.getQuantity() * item.getCostPerUnit();
+            totalAmount += item.getTotalCost();
         }
 
         discount = customer.getDiscount(totalAmount);
-
-        if (customer.isFreeDelivery()) {
-            deliveryFee = 0;
-        }
+        deliveryFee = customer.getDeliveryFee();
 
         finalAmount = totalAmount - discount + deliveryFee;
     }
 
     public void generateBill() {
+
         System.out.println("\n--------- BILL ---------");
+
         for (FoodItem item : orderList) {
             System.out.println(
-                item.getFoodName() + " x " + item.getQuantity() +
-                " = ₹" + (item.getQuantity() * item.getCostPerUnit())
+                    item.getFoodName() + " x " +
+                            item.getQuantity() +
+                            " = ₹" + item.getTotalCost()
             );
         }
 
@@ -53,13 +54,14 @@ public class Bill {
         System.out.println("------------------------");
     }
 
-    // NEW FEATURE
     public static void showPaymentHistory() {
+
         System.out.println("\n====== PAYMENT HISTORY ======");
+
         for (Bill bill : paymentHistory) {
             System.out.println(
-                bill.customer.getCxName() +
-                " | Paid ₹" + bill.finalAmount
+                    bill.customer.getName() +
+                            " | Paid ₹" + bill.finalAmount
             );
         }
     }
