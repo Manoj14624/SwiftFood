@@ -1,15 +1,8 @@
-package main;
+package com.infy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import com.infy.Bill;
-import com.infy.Customer;
-import com.infy.FoodItem;
-import com.infy.GuestCx;
-import com.infy.MemberCustomer;
-import com.infy.PremiumCustomer;
 
 public class SwiftFood {
 
@@ -17,7 +10,6 @@ public class SwiftFood {
 
         Scanner sc = new Scanner(System.in);
 
-        // ---------------- Customer Details ----------------
         System.out.println("Welcome to SwiftFood 🍽️");
 
         System.out.print("Enter Customer ID: ");
@@ -50,23 +42,24 @@ public class SwiftFood {
             customer = new PremiumCustomer(id, name, address, mobile);
         }
 
-        // ---------------- System Menu ----------------
         FoodItem[] menu = {
-            new FoodItem("Paneer Biryani", "Veg", "Indian", 0, 180),
-            new FoodItem("Chicken Biryani", "Non-Veg", "Indian", 0, 220),
-            new FoodItem("Veg Burger", "Veg", "American", 0, 120),
-            new FoodItem("Chicken Burger", "Non-Veg", "American", 0, 150)
+                new FoodItem("Paneer Biryani", "Veg", "Indian", 0, 180),
+                new FoodItem("Chicken Biryani", "Non-Veg", "Indian", 0, 220),
+                new FoodItem("Veg Burger", "Veg", "American", 0, 120),
+                new FoodItem("Chicken Burger", "Non-Veg", "American", 0, 150)
         };
 
         List<FoodItem> orderList = new ArrayList<>();
 
         char more;
+
         do {
             System.out.println("\nAvailable Food Items:");
             for (int i = 0; i < menu.length; i++) {
                 System.out.println(
-                        (i + 1) + ". " + menu[i].foodName +
-                        " | ₹" + menu[i].costPerUnit
+                        (i + 1) + ". " +
+                                menu[i].getFoodName() +
+                                " | ₹" + menu[i].getCostPerUnit()
                 );
             }
 
@@ -79,13 +72,13 @@ public class SwiftFood {
             FoodItem selected = menu[choice - 1];
 
             orderList.add(
-                new FoodItem(
-                    selected.foodName,
-                    selected.foodType,
-                    selected.cuisine,
-                    qty,
-                    selected.costPerUnit
-                )
+                    new FoodItem(
+                            selected.getFoodName(),
+                            selected.getFoodType(),
+                            selected.getCuisine(),
+                            qty,
+                            selected.getCostPerUnit()
+                    )
             );
 
             System.out.print("Do you want to add more items? (y/n): ");
@@ -93,7 +86,6 @@ public class SwiftFood {
 
         } while (more == 'y' || more == 'Y');
 
-        // ---------------- Billing ----------------
         Bill bill = new Bill(customer, orderList);
         bill.generateBill();
 
