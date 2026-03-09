@@ -107,7 +107,7 @@ Three-tier architecture:
 **Manoj Kumar Chidama**
 - BTech CSE 
 - Gayatri Vidya Parishad College of Engineering, Visakhapatnam
-GitHub: https://github.com/Manoj14624
+- GitHub: https://github.com/Manoj14624
 
 ---
 
