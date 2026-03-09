@@ -105,8 +105,8 @@ Three-tier architecture:
 ## 👩‍💻 Author
 
 **Manoj Kumar Chidama**
-BTech CSE 
-Gayatri Vidya Parishad College of Engineering, Visakhapatnam
+- BTech CSE 
+- Gayatri Vidya Parishad College of Engineering, Visakhapatnam
 GitHub: https://github.com/Manoj14624
 
 ---

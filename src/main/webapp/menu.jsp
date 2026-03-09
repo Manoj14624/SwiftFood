@@ -21,6 +21,24 @@
 </div>
 <div class="container">
     <h2>Our Menu</h2>
+    <%
+        String userType = user.getUserType();
+        if (userType == null) userType = "Guest";
+        double discountPct = 0;
+        double deliveryFee = 30.0;
+        if ("Member".equals(userType)) {
+            discountPct = 10;
+            deliveryFee = 0;
+        } else if ("Premium".equals(userType)) {
+            discountPct = 20;
+            deliveryFee = 0;
+        }
+    %>
+    <div class="user-type-banner <%= userType.toLowerCase() %>">
+        <span>Your Membership: <strong><%= userType %></strong></span>
+        <span>Discount: <strong><%= (int)discountPct %>%</strong></span>
+        <span>Delivery Fee: <strong><%= deliveryFee == 0 ? "Free" : "Rs. " + (int)deliveryFee %></strong></span>
+    </div>
     <% if (request.getAttribute("error") != null) { %>
         <p class="error"><%= request.getAttribute("error") %></p>
     <% } %>

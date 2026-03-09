@@ -2,7 +2,7 @@ package com.swiftfood.model;
 
 public class User {
     private int userId;
-    private String username, password, email, phone, address, role;
+    private String username, password, email, phone, address, role, userType;
 
     public int getUserId() { return userId; }
     public void setUserId(int id) { this.userId = id; }
@@ -18,4 +18,6 @@ public class User {
     public void setAddress(String a) { this.address = a; }
     public String getRole() { return role; }
     public void setRole(String r) { this.role = r; }
+    public String getUserType() { return userType; }
+    public void setUserType(String t) { this.userType = t; }
 }

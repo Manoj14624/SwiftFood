@@ -193,3 +193,45 @@ hr {
     background: #eafaf1;
     border-radius: 6px;
 }
+
+.user-type-banner {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 15px;
+    color: white;
+}
+
+.guest {
+    background: linear-gradient(135deg, #777, #999);
+}
+
+.member {
+    background: linear-gradient(135deg, #2E75B6, #3498DB);
+}
+
+.premium {
+    background: linear-gradient(135deg, #F4A221, #e67e22);
+}
+
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.badge.guest {
+    background: #999;
+}
+
+.badge.member {
+    background: #2E75B6;
+}
+
+.badge.premium {
+    background: #F4A221;
+}

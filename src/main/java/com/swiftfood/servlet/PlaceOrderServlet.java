@@ -25,9 +25,21 @@ public class PlaceOrderServlet extends HttpServlet {
         double total = 0;
         for (int i = 0; i < prices.length; i++)
             total += Double.parseDouble(prices[i]) * Integer.parseInt(qtys[i]);
+
+        String userType = user.getUserType();
+        if (userType == null) userType = "Guest";
+
+        double discount = 0;
+        if ("Member".equals(userType))        discount = total * 0.10;
+        else if ("Premium".equals(userType))  discount = total * 0.20;
+
+        double deliveryFee = 0;
+        if ("Guest".equals(userType)) deliveryFee = 30.0;
+
+        double finalTotal = total - discount + deliveryFee;
         try {
             OrderDAO dao = new OrderDAO();
-            int orderId = dao.placeOrder(user.getUserId(), total, address);
+            int orderId = dao.placeOrder(user.getUserId(), finalTotal, address);
             for (int i = 0; i < itemIds.length; i++)
                 dao.addOrderItem(orderId,
                         Integer.parseInt(itemIds[i]),
