@@ -69,4 +69,50 @@ public class OrderDAO {
             return ps.executeUpdate() > 0;
         }
     }
+
+    public List<Map<String, Object>> getOrdersByUser(int userId)
+            throws SQLException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        String sql = "SELECT o.order_id, o.total_price, o.status,"
+                + " o.order_date, o.delivery_addr"
+                + " FROM orders o WHERE o.user_id = ?"
+                + " ORDER BY o.order_date DESC";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> row = new LinkedHashMap<>();
+                row.put("orderId",  rs.getInt("order_id"));
+                row.put("total",    rs.getDouble("total_price"));
+                row.put("status",   rs.getString("status"));
+                row.put("date",     rs.getString("order_date"));
+                row.put("address",  rs.getString("delivery_addr"));
+                list.add(row);
+            }
+        }
+        return list;
+    }
+
+    public List<Map<String, Object>> getOrderItems(int orderId)
+            throws SQLException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        String sql = "SELECT m.name, oi.quantity, oi.price"
+                + " FROM order_items oi"
+                + " JOIN menu_items m ON oi.item_id = m.item_id"
+                + " WHERE oi.order_id = ?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Map<String, Object> row = new LinkedHashMap<>();
+                row.put("name",     rs.getString("name"));
+                row.put("quantity", rs.getInt("quantity"));
+                row.put("price",    rs.getDouble("price"));
+                list.add(row);
+            }
+        }
+        return list;
+    }
 }

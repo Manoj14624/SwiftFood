@@ -70,4 +70,35 @@ public class UserDAO {
         }
     }
 
+    public boolean updateProfile(int userId, String phone, String address)
+            throws SQLException {
+        String sql = "UPDATE users SET phone=?, address=? WHERE user_id=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, phone);
+            ps.setString(2, address);
+            ps.setInt(3, userId);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public boolean changePassword(int userId, String currentPassword,
+                                  String newPassword) throws SQLException {
+        String checkSql = "SELECT user_id FROM users WHERE user_id=? AND password=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(checkSql)) {
+            ps.setInt(1, userId);
+            ps.setString(2, currentPassword);
+            ResultSet rs = ps.executeQuery();
+            if (!rs.next()) return false;
+        }
+        String updateSql = "UPDATE users SET password=? WHERE user_id=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(updateSql)) {
+            ps.setString(1, newPassword);
+            ps.setInt(2, userId);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
 }

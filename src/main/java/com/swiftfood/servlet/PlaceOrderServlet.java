@@ -45,6 +45,11 @@ public class PlaceOrderServlet extends HttpServlet {
                         Integer.parseInt(itemIds[i]),
                         Integer.parseInt(qtys[i]),
                         Double.parseDouble(prices[i]));
+            session.setAttribute("lastOrderId", orderId);
+            session.setAttribute("lastOrderTotal", finalTotal);
+            session.setAttribute("lastOrderDiscount", discount);
+            session.setAttribute("lastOrderDeliveryFee", deliveryFee);
+            session.setAttribute("lastOrderAddress", address);
             res.sendRedirect("orderSuccess.jsp");
         } catch (Exception e) {
             req.setAttribute("error", e.getMessage());
